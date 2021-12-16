@@ -1,9 +1,8 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class CadastroCereais {
     public static void main(String[] args){
-        String cadastrarNovamente;
+       // String cadastrarNovamente;
 
         try (Scanner input = new Scanner(System.in)) {
             Cereais c1 = new Cereais();
