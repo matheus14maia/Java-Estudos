@@ -1,4 +1,4 @@
-public class Cereais {
+class Cereais {
     String nome;
     String minerais;
     String gluten;
