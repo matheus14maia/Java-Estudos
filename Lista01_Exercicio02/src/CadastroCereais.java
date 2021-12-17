@@ -18,10 +18,10 @@ public class CadastroCereais {
         String cadastrarNovamente;
         try(Scanner input = new Scanner(System.in)) {
             cadastro(input);
-            System.out.println("Deseja cadastrar mais um cereal? Sim ou Não");
+            System.out.println("Deseja cadastrar mais um cereal?");
             cadastrarNovamente = input.next();
             while (cadastrarNovamente != null){
-                if (cadastrarNovamente.equals("Sim")) {
+                if (cadastrarNovamente.equals("Sim") || cadastrarNovamente.equals("sim")) {
                     cadastro(input);
                     System.out.println("Deseja cadastrar mais um cereal? Sim ou Não");
                     cadastrarNovamente = input.next();
