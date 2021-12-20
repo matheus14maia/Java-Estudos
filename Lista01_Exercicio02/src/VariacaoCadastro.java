@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.Vector;
 
 class VariacaoCadastro {
     static void quantidadeCadastro(Scanner input){
@@ -8,15 +8,15 @@ class VariacaoCadastro {
 
         n = input.nextInt();
 
-        ArrayList<Cereal> cerealList = new ArrayList<Cereal>();
+        Vector<Cereal> cerealVector = new Vector<>();
 
         for (i=0; i < n; i++){
             System.out.format("Type about the %dº cereal %n", i+1);
             System.out.println("Type the name, mineral, has gluten, Fibers percent");
-            cerealList.add(new Cereal(input.next(), input.next(), input.next(), input.nextDouble()));
+            cerealVector.add(new Cereal(input.next(), input.next(), input.next(), input.nextDouble()));
         }
         i = 0;
-        for (Cereal cereal : cerealList){
+        for (Cereal cereal : cerealVector){
             System.out.format("Esse é o %dº cereal %n", i+1);
             System.out.println("Name: "+cereal.nome+" - Mineral: "+cereal.minerais+" - Has gluten: "+
                     cereal.gluten+" - Fiber Percent: "+(cereal.teorDeFibras*100)+"%");
