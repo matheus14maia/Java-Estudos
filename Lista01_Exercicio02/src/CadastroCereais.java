@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CadastroCereais {
+class CadastroCereais {
     static void cadastro(Scanner input){
         Cereais c1 = new Cereais();
         System.out.println("Type the name: ");
@@ -12,7 +12,7 @@ public class CadastroCereais {
         System.out.println("Type the fibers percentage in Decimal: ");
         c1.teorDeFibras = input.nextDouble();
         System.out.println("Cereal - Name: "+ c1.nome +" - Mineral: "+ c1.minerais +
-                " - Gluten: "+ c1.gluten +" - Fibers Percent: "+ (c1.teorDeFibras*100) +"%");
+                " - Gluten: "+ c1.gluten +" - Fibers Percent: "+ (c1.teorDeFibras*100) +"% a cada 100g");
     }
     public static void main(String[] args){
         String cadastrarNovamente;
