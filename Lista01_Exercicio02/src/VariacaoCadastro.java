@@ -20,7 +20,6 @@ class VariacaoCadastro {
             cereal.teorDeFibras = input.nextDouble();
             cereais[i] = cereal;
         }
-
         i = 0;
         while(i < cereais.length){
             System.out.printf("Esse é o %dº cereal \n", (i+1));
@@ -28,7 +27,6 @@ class VariacaoCadastro {
                     cereais[i].gluten+" - Fiber Percent: "+(cereais[i].teorDeFibras*100)+"%");
             i++;
         }
-
     }
     public static void main(String[] args){
 
