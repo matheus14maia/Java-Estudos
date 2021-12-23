@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 class Application {
-    static void cadastroMoradores(Scanner input, int qtd) {
+    private static void cadastroMoradores(Scanner input, int qtd) {
         int i, n;
         n = qtd;
         ArrayList<Moradores>moradorList = new ArrayList<>();
