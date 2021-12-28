@@ -45,6 +45,7 @@ public class Robo {
     }
 
     Robo(int id, double reserv){
+        identifier = id;
         status = "desligado";
         posicaoX = 0;
         posicaoY = 0;
