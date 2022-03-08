@@ -25,16 +25,20 @@ class Application {
             if (robo1.getStatus().equalsIgnoreCase("andar")){
                 robo1.setPosicaoX(input.nextInt());
                 robo1.setPosicaoY(input.nextInt());
+                robo1.toString();
             }
             if (robo1.getStatus().equalsIgnoreCase("aspirar")){
-
+                robo1.setPorcentagem(input.nextFloat());
+                robo1.toString();
             }
             if (robo1.getStatus().equalsIgnoreCase("parar")){
-
+                System.out.println("O robo está parado");
+                robo1.toString();
             }
         }else {
             System.out.println("O robô está desligado, primeiro ligue o robô, antes de qualquer operação");
         }
+
     }
     public static void main(String[] args){
         try (Scanner input = new Scanner(System.in)){
