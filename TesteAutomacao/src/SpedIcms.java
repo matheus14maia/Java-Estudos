@@ -6,8 +6,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SpedIcms {
-    public static void main(String[] args) throws Exception {
-        RunJar.main(args);
+    public static void main() throws Exception {
+        RunJar.main();
         String pasta1 = "";
         boolean cont = true;
         String empresa;
@@ -29,7 +29,7 @@ public class SpedIcms {
             empresa = Integer.toString(k);
             Screenshot.main("ICMS"+empresa);    //tirar print
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.0){
+            if (Screenshot.getPercent() >= 2.4){
                 c.add(k);                   //adicionar as empresas com certificados fora da validade a lista
                 Thread.sleep(1500);
                 robot.keyPress(KeyEvent.VK_ENTER);
@@ -219,7 +219,7 @@ public class SpedIcms {
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             }
             Thread.sleep(10000);
-            RunJar.main(args);
+            RunJar.main();
         }
 
         for (int l = 0; l < 8; l++) {
@@ -232,6 +232,6 @@ public class SpedIcms {
         robot.keyRelease(KeyEvent.VK_ENTER);
 
         Thread.sleep(15000);
-        SpedEcf.main(args);
+        SpedEcf.main();
     }
 }

@@ -6,8 +6,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SpedContabil {
-    public static void main(String[] args) throws Exception {
-        RunJar.main(args);
+    public static void main() throws Exception {
+        RunJar.main();
         Thread.sleep(10000);
         String pasta1 = "";
         boolean cont = true;
@@ -30,7 +30,7 @@ public class SpedContabil {
             empresa = Integer.toString(k);
             Screenshot.main("ECD"+empresa);
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.0){
+            if (Screenshot.getPercent() >= 2.4){
                 c.add(k);           //adicionar as empresas com certificados fora da validade a lista
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
@@ -206,7 +206,7 @@ public class SpedContabil {
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             }
             Thread.sleep(5000);
-            RunJar.main(args);
+            RunJar.main();
             Thread.sleep(10000);
         }
         for (int l = 0; l < 8; l++) {
@@ -219,6 +219,6 @@ public class SpedContabil {
         robot.keyRelease(KeyEvent.VK_ENTER);
 
         Thread.sleep(15000);
-        SpedContribuicao.main(args);
+        SpedContribuicao.main();
     }
 }

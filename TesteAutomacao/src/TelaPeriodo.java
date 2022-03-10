@@ -29,7 +29,7 @@ public class TelaPeriodo {
         btnBaixar.setBounds(160, 150, 150, 30);
         btnBaixar.addActionListener(e -> {
             try {
-                SpedIcms.main(args);
+                SpedIcms.main();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
