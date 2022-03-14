@@ -45,6 +45,6 @@ public class Screenshot {
 
         double avg = diff/(w1*h1*3);
         percent = (avg/255)*100;
-        System.out.println("Difference: "+percent);
+        //System.out.println("Difference: "+percent);
     }
 }

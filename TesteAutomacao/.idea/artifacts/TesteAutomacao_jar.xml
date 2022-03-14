@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TesteAutomacao:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TesteAutomacao_jar</output-path>
+    <root id="archive" name="TesteAutomacao.jar">
+      <element id="module-output" name="TesteAutomacao" />
+    </root>
+  </artifact>
+</component>
