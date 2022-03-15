@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -98,8 +99,12 @@ public class SpedContabil {
                 Thread.sleep(1000);
                 String pasta = NomeEmpresa.main();
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String contab = "D:\\Contabil\\Contabil_";
-                Files.createDirectories(Paths.get(contab + pasta));
+                String sped = "D:\\Sped";
+                String ecd = "ECD";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4);
+                String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
+                Path target = Paths.get(sped, pasta, ecd, ano, mes);
+                Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
                     cont = false;
                 }
@@ -206,7 +211,7 @@ public class SpedContabil {
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                     Thread.sleep(300000);
 
-                    MoveFiles.main(path, contab.concat(pasta));
+                    MoveFiles.main(path, target.toString());
                 }
 
                 Thread.sleep(2000);

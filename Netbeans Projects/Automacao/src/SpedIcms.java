@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -99,12 +100,16 @@ public class SpedIcms {
                 Thread.sleep(500);
                 String pasta = NomeEmpresa.main();      // Criar Pasta
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String icms = "D:\\ICMS\\ICMS_";
-                Files.createDirectories(Paths.get(icms + pasta));
+                String sped = "D:\\Speds";
+                String icms = "EFDICMS";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4);
+                String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
+                Path target = Paths.get(sped, pasta, icms, ano, mes);
+                Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
-                    cont = false;
+                     cont = false;
                 }
-                pasta1 = pasta;
+                  pasta1 = pasta;
 
                 Thread.sleep(1000);
                 robot.mouseMove(875, 567);
@@ -220,7 +225,7 @@ public class SpedIcms {
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                     Thread.sleep(300000);
 
-                    MoveFiles.main(path, icms.concat(pasta));
+                    MoveFiles.main(path, target.toString());
                 }
                 Thread.sleep(2000);
                 robot.mouseMove(1161, 25);
