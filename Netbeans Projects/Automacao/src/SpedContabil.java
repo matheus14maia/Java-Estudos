@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SpedContabil {
-    public static void main() throws Exception {
+    public static void main() throws Exception, InterruptedException {
         RunJar.main();
         Thread.sleep(10000);
         String pasta1 = "";
@@ -40,7 +40,7 @@ public class SpedContabil {
             empresa = Integer.toString(k);
             Screenshot.main("ECD"+empresa);
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.4){
+            if (Screenshot.getPercent() >= 4){
                 c.add(k);           //adicionar as empresas com certificados fora da validade a lista
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
@@ -99,11 +99,12 @@ public class SpedContabil {
                 Thread.sleep(1000);
                 String pasta = NomeEmpresa.main();
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String sped = "D:\\Sped";
-                String ecd = "ECD";
-                String ano = TelaPeriodo.getTxtDataFinal().substring(4);
+                String sped = "D:\\Speds\\";
+                String ecd = "\\ECD\\";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4).concat("\\");
                 String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
-                Path target = Paths.get(sped, pasta, ecd, ano, mes);
+                Path target = Paths.get(sped + pasta + ecd + ano + mes);
+                String targetString = sped.concat(pasta.concat(ecd.concat(ano.concat(mes))));
                 Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
                     cont = false;
@@ -161,13 +162,13 @@ public class SpedContabil {
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
                 Thread.sleep(3000);
-                ScreenshotItens.main("Itens_ECD" + empresa);
-                Thread.sleep(1000);
-                if (ScreenshotItens.getPercent() >= 5.0) {
+                ScreenshotItens.main("Itens_ECD" + empresa, "Ecd");
+                Thread.sleep(3500);
+                if (ScreenshotItens.getPercent() <= 16.0) {
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
                 } else {
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
                     robot.mouseMove(411, 452);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // selecionar todas speds da pesquisa
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -209,9 +210,9 @@ public class SpedContabil {
                     robot.mouseMove(433, 132);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // baixar
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                    Thread.sleep(300000);
+                    Thread.sleep(60000);
 
-                    MoveFiles.main(path, target.toString());
+                    MoveFiles.main(path, targetString);
                 }
 
                 Thread.sleep(2000);

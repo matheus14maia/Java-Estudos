@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SpedIcms {
-    public static void main() throws Exception {
+    public static void main() throws Exception, InterruptedException {
         RunJar.main();
         String pasta1 = "";
         boolean cont = true;
@@ -39,7 +39,7 @@ public class SpedIcms {
             empresa = Integer.toString(k);
             Screenshot.main("ICMS"+empresa);    //tirar print
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.4){
+            if (Screenshot.getPercent() >= 4){
                 c.add(k);                   //adicionar as empresas com certificados fora da validade a lista
                 Thread.sleep(1500);
                 robot.keyPress(KeyEvent.VK_ENTER);
@@ -100,16 +100,22 @@ public class SpedIcms {
                 Thread.sleep(500);
                 String pasta = NomeEmpresa.main();      // Criar Pasta
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String sped = "D:\\Speds";
-                String icms = "EFDICMS";
-                String ano = TelaPeriodo.getTxtDataFinal().substring(4);
+                String sped = "D:\\Speds\\";
+                String icms = "\\EFDICMS\\";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4).concat("\\");
                 String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
-                Path target = Paths.get(sped, pasta, icms, ano, mes);
+                Path target = Paths.get(sped + pasta + icms + ano + mes);
+                String targetString = sped.concat(pasta.concat(icms.concat(ano.concat(mes))));
                 Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
                      cont = false;
                 }
-                  pasta1 = pasta;
+
+                /*if(pasta.equals("FERNANDO MAIA DE OLIVEIRA_76772616120")){
+                    Procuracao.main();
+                }*/
+
+                pasta1 = pasta;
 
                 Thread.sleep(1000);
                 robot.mouseMove(875, 567);
@@ -119,7 +125,7 @@ public class SpedIcms {
                 Thread.sleep(3000);
                 robot.keyPress(KeyEvent.VK_TAB);
                 robot.keyRelease(KeyEvent.VK_TAB);      // entrar na tela de pesquisa
-                Thread.sleep(700);
+                Thread.sleep(1000);
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -176,12 +182,13 @@ public class SpedIcms {
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
                 Thread.sleep(5000);
-                ScreenshotItens.main("Itens_ICMS".concat(empresa));
-                Thread.sleep(1000);
-                if (ScreenshotItens.getPercent() >= 5.0) {
+                ScreenshotItens.main("Itens_ICMS".concat(empresa), "Icms");
+                Thread.sleep(3500);
+                if (ScreenshotItens.getPercent() > 2.6) {
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
                 } else {
+                    Thread.sleep(4000);
                     robot.mouseMove(411, 452);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // selecionar todas speds da pesquisa
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -223,9 +230,9 @@ public class SpedIcms {
                     robot.mouseMove(433, 132);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // baixar
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                    Thread.sleep(300000);
+                    Thread.sleep(120000);
 
-                    MoveFiles.main(path, target.toString());
+                    MoveFiles.main(path, targetString);
                 }
                 Thread.sleep(2000);
                 robot.mouseMove(1161, 25);

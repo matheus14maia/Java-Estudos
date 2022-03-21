@@ -20,13 +20,13 @@ public class ScreenshotItens {
         return percent;
     }
 
-    public static void main(String args) throws IOException, AWTException {
+    public static void main(String args, String tipo) throws IOException, AWTException {
         Robot r = new Robot();
 
         BufferedImage screenshot = r.createScreenCapture(new Rectangle(178, 9, 1010, 718));
         ImageIO.write(screenshot, "png", new File("d:\\Screenshot Receitanet\\empresa"+args+".png"));
 
-        BufferedImage img1 = ImageIO.read(new File("d:\\Screenshot Receitanet\\empresaL.png"));
+        BufferedImage img1 = ImageIO.read(new File("d:\\Screenshot Receitanet\\"+tipo+".png"));
         BufferedImage img2 = ImageIO.read(new File("d:\\Screenshot Receitanet\\empresa"+args+".png"));
 
         int w1 = img1.getWidth();
