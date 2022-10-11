@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class SpedContribuicao {
             empresa = Integer.toString(k);
             Screenshot.main("CONTRIB"+empresa);
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.4){
+            if (Screenshot.getPercent() > 4){
                 c.add(k);                           //adicionar as empresas com certificados fora da validade a lista
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
@@ -89,8 +90,13 @@ public class SpedContribuicao {
                 Thread.sleep(1000);
                 String pasta = NomeEmpresa.main();
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String contrib = "D:\\Contribuicoes\\Contribuicoes_";
-                Files.createDirectories(Paths.get(contrib + pasta));
+                String sped = "D:\\Speds\\";
+                String contrib = "\\EFDCONT\\";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4).concat("\\");
+                String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
+                Path target = Paths.get(sped + pasta + contrib + ano + mes);
+                String targetString = sped.concat(pasta.concat(contrib.concat(ano.concat(mes))));
+                Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
                     cont = false;
                 }
@@ -178,13 +184,13 @@ public class SpedContribuicao {
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
                 Thread.sleep(3000);
-                ScreenshotItens.main("Itens_CONTRIB" + empresa);
-                Thread.sleep(1000);
-                if (ScreenshotItens.getPercent() >= 5.0) {
+                ScreenshotItens.main("Itens_CONTRIB" + empresa, "Contrib");
+                Thread.sleep(3500);
+                if (ScreenshotItens.getPercent() >= 0.3) {
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
                 } else {
-                    Thread.sleep(7000);
+                    Thread.sleep(5000);
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -216,9 +222,9 @@ public class SpedContribuicao {
                     robot.mouseMove(433, 132);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // baixar
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                    Thread.sleep(300000);
+                    Thread.sleep(90000);
 
-                    MoveFiles.main(path, contrib.concat(pasta));
+                    MoveFiles.main(path, targetString);
                 }
 
                 Thread.sleep(2000);

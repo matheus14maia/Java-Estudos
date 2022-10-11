@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -14,8 +15,8 @@ public class SpedIcms {
         ArrayList<Integer> c = new ArrayList();
 
         Robot robot = new Robot();
-        for (int k = 1; cont; k++) {
-            Thread.sleep(10000);
+        for (int k = 39; cont; k++) {
+            Thread.sleep(15000);
             for (int j = 0; j < k ; j++) {
                 robot.keyPress(KeyEvent.VK_DOWN); // escolher empresa pra baixar sped
                 robot.keyRelease(KeyEvent.VK_DOWN);
@@ -29,7 +30,7 @@ public class SpedIcms {
             empresa = Integer.toString(k);
             Screenshot.main("ICMS"+empresa);    //tirar print
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 2.4){
+            if (Screenshot.getPercent() > 4){
                 c.add(k);                   //adicionar as empresas com certificados fora da validade a lista
                 Thread.sleep(1500);
                 robot.keyPress(KeyEvent.VK_ENTER);
@@ -90,11 +91,20 @@ public class SpedIcms {
                 Thread.sleep(500);
                 String pasta = NomeEmpresa.main();      // Criar Pasta
                 String path = "C:\\Users\\FicusMaheus\\Documents\\Arquivos ReceitanetBX";
-                String icms = "D:\\ICMS\\ICMS_";
-                Files.createDirectories(Paths.get(icms + pasta));
+                String sped = "D:\\Speds\\";
+                String icms = "\\EFDICMS\\";
+                String ano = TelaPeriodo.getTxtDataFinal().substring(4).concat("\\");
+                String mes = TelaPeriodo.getTxtDataInicial().substring(2, 4);
+                Path target = Paths.get(sped + pasta + icms + ano + mes);
+                String targetString = sped.concat(pasta.concat(icms.concat(ano.concat(mes))));
+                Files.createDirectories(target);
                 if (pasta1.equals(pasta)) {
                     cont = false;
                 }
+                /*if(pasta.equals("FERNANDO MAIA DE OLIVEIRA_76772616120")){
+                    Procuracao.main();
+                }*/
+
                 pasta1 = pasta;
 
                 Thread.sleep(1000);
@@ -105,7 +115,7 @@ public class SpedIcms {
                 Thread.sleep(3000);
                 robot.keyPress(KeyEvent.VK_TAB);
                 robot.keyRelease(KeyEvent.VK_TAB);      // entrar na tela de pesquisa
-                Thread.sleep(700);
+                Thread.sleep(1000);
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -162,12 +172,13 @@ public class SpedIcms {
                 robot.keyRelease(KeyEvent.VK_ENTER);
 
                 Thread.sleep(5000);
-                ScreenshotItens.main("Itens_ICMS".concat(empresa));
-                Thread.sleep(1000);
-                if (ScreenshotItens.getPercent() >= 5.0) {
+                ScreenshotItens.main("Itens_ICMS".concat(empresa), "Icms");
+                Thread.sleep(3500);
+                if (ScreenshotItens.getPercent() > 3.0) {
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
                 } else {
+                    Thread.sleep(4000);
                     robot.mouseMove(411, 452);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // selecionar todas speds da pesquisa
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -209,9 +220,9 @@ public class SpedIcms {
                     robot.mouseMove(433, 132);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // baixar
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                    Thread.sleep(300000);
+                    Thread.sleep(120000);
 
-                    MoveFiles.main(path, icms.concat(pasta));
+                    MoveFiles.main(path, targetString);
                 }
                 Thread.sleep(2000);
                 robot.mouseMove(1161, 25);

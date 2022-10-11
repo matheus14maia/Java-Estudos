@@ -18,7 +18,7 @@ public class Screenshot {
         ImageIO.write(screenshot, "png", new File("d:\\Screenshot Receitanet\\empresa"+args+".png"));
 
         BufferedImage img1 = ImageIO.read(new File("d:\\Screenshot Receitanet\\empresaBase.png"));
-        BufferedImage img2 = ImageIO.read(new File("d:\\Screenshot Receitanet\\empresa"+args+".png"));
+        BufferedImage img2 = ImageIO.read(new File("d:\\Screenshot Receitanet\\empresa"+"ICMS2"+".png"));
 
         int w1 = img1.getWidth();
         int h1 = img1.getHeight();

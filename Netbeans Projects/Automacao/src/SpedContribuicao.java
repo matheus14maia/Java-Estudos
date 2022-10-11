@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class SpedContribuicao {
     public static void main() throws Exception, InterruptedException {
         RunJar.main();
-        Thread.sleep(10000);
+        //Thread.sleep(15000);
         String pasta1 = "";
         boolean cont = true;
         String empresa;
@@ -26,11 +26,11 @@ public class SpedContribuicao {
 
         Robot robot = new Robot();
         for (int k = 1; cont; k++) {
-            Thread.sleep(15000);
+            Thread.sleep(10000);
             for (int j = 0; j < k ; j++) {
                 robot.keyPress(KeyEvent.VK_DOWN); // escolher empresa pra baixar sped
                 robot.keyRelease(KeyEvent.VK_DOWN);
-                Thread.sleep(1500);
+                Thread.sleep(750);
                 if (c.contains(j+1)){
                     robot.keyPress(KeyEvent.VK_ENTER);
                     robot.keyRelease(KeyEvent.VK_ENTER);
@@ -40,7 +40,7 @@ public class SpedContribuicao {
             empresa = Integer.toString(k);
             Screenshot.main("CONTRIB"+empresa);
             Thread.sleep(1000);
-            if (Screenshot.getPercent() >= 4){
+            if (Screenshot.getPercent() > 4){
                 c.add(k);                           //adicionar as empresas com certificados fora da validade a lista
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
@@ -231,7 +231,7 @@ public class SpedContribuicao {
                     robot.mouseMove(433, 132);
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);     // baixar
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                    Thread.sleep(90000);
+                    Thread.sleep(45000);
 
                     MoveFiles.main(path, targetString);
                 }
@@ -245,7 +245,7 @@ public class SpedContribuicao {
             RunJar.main();
             Thread.sleep(10000);
         }
-        for (int l = 0; l < 8; l++) {
+        for (int l = 0; l < 12; l++) {
             Thread.sleep(1000);
             robot.keyPress(KeyEvent.VK_TAB);
             robot.keyRelease(KeyEvent.VK_TAB);

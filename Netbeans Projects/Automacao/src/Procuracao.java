@@ -8,12 +8,12 @@
  * @author FicusMaheus
  */
 
-import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Procuracao {
-    public static void main() throws AWTException, InterruptedException{
+    public static void main() throws Exception, InterruptedException{
 
     Robot robo = new Robot();
 
@@ -33,5 +33,14 @@ public class Procuracao {
     robo.keyPress(KeyEvent.VK_TAB);
     robo.keyRelease(KeyEvent.VK_TAB);
 
+    Data.data(robo, TelaPeriodo.getTxtCnpj());
+
+    Thread.sleep(1000);
+    robo.mouseMove(875, 567);
+    robo.mousePress(InputEvent.BUTTON1_DOWN_MASK); // selecionar empresa
+    robo.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+    
+    
     }
 }

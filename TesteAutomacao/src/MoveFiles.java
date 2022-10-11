@@ -32,7 +32,7 @@ public class MoveFiles {
             targetDir = Files.createDirectories(Paths.get(target));
         }
         for (Path filePath: filePaths){
-            Files.move(filePath, Paths.get(target, filePath.getFileName().toString()), StandardCopyOption.ATOMIC_MOVE);
+            Files.move(filePath, Paths.get(target, filePath.getFileName().toString()), StandardCopyOption.REPLACE_EXISTING);
         }
     }
 }

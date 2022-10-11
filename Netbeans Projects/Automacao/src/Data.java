@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.Field;
 
 public class Data {
-    public static void data(Robot bot, String st) throws NoSuchFieldException, IllegalAccessException {
+    public static void data(Robot bot, String st) throws NoSuchFieldException, IllegalAccessException, InterruptedException {
         for (int i = 0; i < st.length(); i++) {
             String letter = Character.toString(st.charAt(i));
             String code = "VK_"+letter;
@@ -22,6 +22,7 @@ public class Data {
 
             bot.keyPress(keyEvent);
             bot.keyRelease(keyEvent);
+            Thread.sleep(500);
         }
     }
 }
